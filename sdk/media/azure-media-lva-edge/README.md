@@ -18,24 +18,30 @@ Install the Live Video Analytics client library for Python with pip:
 ```bash
 pip install azure-lva-edge
 ```
+
 ### Prerequisites
 
 * Python 2.7, or 3.5 or later is required to use this package.
-* You need an [Azure subscription][azure_sub], and a [IOT device connection string][iot_device_connection_string] to use this package.
+* You need an [Azure subscription][azure_sub], and a [IoT device connection string][iot_device_connection_string] to use this package.
 
 
 ## Key concepts
 
 ### Graph Topology vs Graph Instance
-A graph topology is essentially the blueprint or template of a graph. It defines the parameters of the graph using placeholders as values for them. A graph instance references a graph topology and specifies the parameters. This way you are able to have multiple graph instances referencing the same topology but with different values for parameters. For more information please visit [Media graph topologies and instances][doc_media_graph] 
+
+A _graph topology_ is a blueprint or template of a graph. It defines the parameters of the graph using placeholders as values for them. A _graph instance_ references a graph topology and specifies the arguments for the parameters. This way you are able to have multiple graph instances referencing the same topology but with different values for parameters. For more information please visit [Media graph topologies and instances][doc_media_graph] 
 
 ### CloudToDeviceMethod
 
-The `CloudToDeviceMethod` is part of the azure-iot-hub sdk. This method allows you to communicate one way notifications to a device in your iot hub. In our case we want to communicate various graph methods such as `MediaGraphTopologySetRequest` and `MediaGraphTopologyGetRequest`. To use `CloudToDeviceMethod` you need to pass in two parameters: `method_name` and `payload`. `method_name` should be the name of the media graph request you are sending. Each media graph request has a property called `method_name`. For example, `MediaGraphTopologySetRequest.method_name`. For the second parameter `payload` send the entire serialization of the media graph request. For example, `MediaGraphTopologySetRequest.serialize()`
+The `CloudToDeviceMethod` is part of the [azure-iot-hub SDK][iot-hub-sdk]. This method allows you to communicate one way notifications to a device in your IoT Hub. In our case we want to communicate various graph methods such as `MediaGraphTopologySetRequest` and `MediaGraphTopologyGetRequest`. To use `CloudToDeviceMethod` you need to pass in two parameters: `method_name` and `payload`. 
+
+The first parameter, `method_name`, is the name of the media graph request you are sending. Each media graph request has a property called `method_name`. For example, `MediaGraphTopologySetRequest.method_name`. 
+
+The second parameter, `payload`, sends the entire serialization of the media graph request. For example, `MediaGraphTopologySetRequest.serialize()`
 
 ## Examples
 
-[Samples][samples]
+For examples, please see the official [samples][samples].
 
 ## Troubleshooting
 
@@ -75,7 +81,7 @@ additional questions or comments.
 [coc_contact]: mailto:opencode@microsoft.com
 
 [package]: TODO://link-to-published-package
-[source]: TODO://link-to-path-in-the-SDK-repo
+[source]: https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/media/azure-media-lva-edge
 [samples]: https://github.com/Azure-Samples/live-video-analytics-iot-edge-python
 
 [doc_direct_methods]: https://docs.microsoft.com/azure/media-services/live-video-analytics-edge/direct-methods
